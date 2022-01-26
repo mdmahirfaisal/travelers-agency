@@ -1,0 +1,152 @@
+.blog-body {
+    margin: 0;
+    display: grid;
+    grid-template:
+      "head head head head" min-content
+      "hero hero hero hero" 50vh
+      ". main side ." auto
+      "foot foot foot foot" min-content
+      / 1fr 5fr 1fr 1fr;
+    grid-column-gap: 2rem;
+  
+    font-family: Lato;
+    background: var(--clr-body);
+  
+    animation-duration: 5s;
+    animation-name: kf-open;
+  }
+  
+  .blog-hero {
+    color: white;
+    background: url('https://www.oxfordmartin.ox.ac.uk/images/_1400x450_crop_center-center_none/AdobeStock_274966107_Nature_based_Solutions.jpeg')
+      center no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 10px black;
+    z-index: 1;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    grid-area: hero;
+  }
+  .blog-hero > h1 {
+    margin: 0;
+    font-size: 4rem;
+    text-shadow: 0px 0px 4px orange;
+  }
+  
+  .blog-main {
+    grid-area: main;
+  }
+  
+  .blog-main > h3 {
+    color: var(--clr-font-dark-100);
+  }
+  
+  .blog-card {
+    background: var(--clr-card);
+    color: var(--clr-font-dark-200);
+    box-shadow: 0 0 10px gray;
+    margin: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 10px;
+    display: grid;
+    grid-template:
+      "img head" min-content
+      "img text" auto
+      / minmax(50px, 1fr) 3fr;
+    grid-column-gap: 2rem;
+  }
+  .blog-card img {
+    grid-area: img;
+    width: 100%;
+    margin: 1rem;
+    border-radius: 10px;
+  }
+  .blog-card h3 {
+    margin-top: 0.5rem;
+    grid-area: head;
+  }
+  .blog-card p {
+    margin-top: 0;
+    padding-right: 2rem;
+    grid-area: text;
+  }
+  
+  .sidebar {
+    filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    grid-area: side;
+    min-width: 150px;
+  }
+  .sidebar-content {
+    background: var(--clr-side);
+    color: rgb(10, 177, 38);
+    height: max-content;
+    width: auto;
+    margin: 0;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  @media only screen and (min-width: 650px) {
+    .sidebar-content:after {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      content: "";
+      background: var(--clr-side);
+      clip-path: polygon(50% 100%, 0 0, 100% 0);
+    }
+  }
+  
+  .sidebar-content a {
+    color: rgb(71, 71, 71);
+  }
+  .sidebar-content > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  @media only screen and (max-width: 650px) {
+    .blog-body {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .blog-hero {
+      text-align: center;
+    }
+  
+    .blog-main {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .blog-main > h3 {
+      padding: 0;
+      text-align: center;
+    }
+    .sidebar-content ul li {
+      display: inline;
+    }
+    .sidebar-content ul {
+      text-align: center;
+    }
+    .sidebar-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .blog-hero {
+      padding: 2rem;
+    }
+  }

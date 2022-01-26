@@ -1,38 +1,51 @@
+/* custom scrollbar*/
+/* ::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff;
+  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(212, 0, 255);
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.2);
+} */
+/*CUSTOM SCROLL BAR*/
+*,html{
+  scroll-behavior: smooth;
+  }
+  *, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  }
+  :root{
+  scrollbar-color: rgb(210,210,210) rgb(46,54,69) !important;
+  scrollbar-width: thin !important;
+  --white:#fff;
+  --black:#131417;
+  --primary:#5bc348;
+  --primarylite:#53b141;
+  --gray:#6d7175;
+  --dark:#253248;
+  --darklite:#364256;
+  --lite:#f8f9fa;
+  }
+  ::-webkit-scrollbar {
+  height: 12px;
+  width: 8px;
+  background: var(--dark);
+  }
+  ::-webkit-scrollbar-thumb {
+  background: rgb(184, 8, 8);
+  }
+  ::-webkit-scrollbar-corner {
+  background: var(--dark);
+  }
+
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
