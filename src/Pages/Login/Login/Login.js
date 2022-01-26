@@ -9,14 +9,14 @@ import GoogleIcon from '@mui/icons-material/Google';
 import Swal from 'sweetalert2';
 import Navigation from '../../Shared/Navigation/Navigation';
 
-// import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 
 
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    // const { user, signInWithGoogle, registerUser, loginUser, } = useAuth();
+    const { user, signInWithGoogle, registerUser, loginUser, } = useAuth();
     const [newName, setNewName] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [newPass, setNewPass] = useState("");
@@ -28,73 +28,22 @@ const Login = () => {
 
     //// Login with google
     const handleGoogleLogin = () => {
-        // signInWithGoogle(location, navigate);
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't to Logoin",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Logout'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                navigate('/')
-                Swal.fire(
-                    'Logged is',
-                    'Login successfully.',
-                    'success'
-                )
-            }
-        })
+        signInWithGoogle(location, navigate);
+
     };
 
     //// handle register
     const handleRegisterSubmit = () => {
-        // registerUser(newEmail, newPass, newName, navigate)
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't to Logoin",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Logout'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                navigate('/')
-                Swal.fire(
-                    'Logged is',
-                    'Login successfully.',
-                    'success'
-                )
-            }
-        })
+        registerUser(newEmail, newPass, newName, navigate)
+
 
     }
 
     //// handle login
     const handleLoginSubmit = (data) => {
         console.log(data)
-        // loginUser(data.email, data.password, location, navigate)
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't to Logoin",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Logout'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                navigate('/')
-                Swal.fire(
-                    'Logged is',
-                    'Login successfully.',
-                    'success'
-                )
-            }
-        })
+        loginUser(data.email, data.password, location, navigate)
+
 
     };
 

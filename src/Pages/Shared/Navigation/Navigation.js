@@ -3,10 +3,13 @@ import './Navigation.css'
 import { Container, Nav, Navbar, Overlay, Popover } from 'react-bootstrap';
 import { HashLink } from 'react-router-hash-link';
 import Swal from 'sweetalert2';
+import useAuth from '../../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Navigation = () => {
+    const { user, logOut } = useAuth();
     const [isSticky, setSticky] = React.useState(false);
     const [isCollapsed, setCollapsed] = React.useState(null);
 
@@ -22,6 +25,9 @@ const Navigation = () => {
         })
     }, []);
 
+
+    const navigate = useNavigate();
+
     // logout
     const handleLogout = () => {
         Swal.fire({
@@ -34,6 +40,8 @@ const Navigation = () => {
             confirmButtonText: 'Logout'
         }).then((result) => {
             if (result.isConfirmed) {
+                logOut()
+                navigate('/')
                 Swal.fire(
                     'Login out',
                     'Logout successfully.',
@@ -87,27 +95,30 @@ const Navigation = () => {
 
                         </Nav>
                         <Nav className='ms-auto d-flex align-items-center'>
-                            <div ref={ref}>
-                                <h3 onClick={handleClick} style={{ cursor: 'pointer' }}><i className="text-danger fas fa-user-circle"></i></h3>
+                            {
+                                user.email ?
+                                    <div ref={ref}>
+                                        <h3 onClick={handleClick} style={{ cursor: 'pointer' }}><i className="text-danger fas fa-user-circle"></i></h3>
 
-                                <Overlay
-                                    show={show}
-                                    target={target}
-                                    placement="bottom"
-                                    container={ref}
-                                    containerPadding={20}
-                                >
-                                    <Popover id="popover-contained" className='border-0 bg-light shadow'>
-                                        <Popover.Header className='border-0' > <h5 className='text-center text-primary'>user.displayName</h5></Popover.Header>
-                                        <Popover.Body>
-                                            <p>user.email</p>
-                                            <button onClick={handleLogout} className='btn btn-outline-danger px-5 w-100 py-0 rounded-pill text-center mx-auto mb-3'>Logout</button>
+                                        <Overlay
+                                            show={show}
+                                            target={target}
+                                            placement="bottom"
+                                            container={ref}
+                                            containerPadding={20}
+                                        >
+                                            <Popover id="popover-contained" className='border-0 bg-light shadow'>
+                                                <Popover.Header className='border-0' > <h5 className='text-center text-primary'>{user.displayName}</h5></Popover.Header>
+                                                <Popover.Body>
+                                                    <p>{user.email}</p>
+                                                    <button onClick={handleLogout} className='btn btn-outline-danger px-5 w-100 py-0 rounded-pill text-center mx-auto mb-3'>Logout</button>
 
-                                        </Popover.Body>
-                                    </Popover>
-                                </Overlay>
-                            </div>
-                            <Nav.Link as={HashLink} to="/login" className="me-3" active> Sign in </Nav.Link>
+                                                </Popover.Body>
+                                            </Popover>
+                                        </Overlay>
+                                    </div> :
+                                    <Nav.Link as={HashLink} to="/login" className="me-3 text-decoration-non " active> Sign in </Nav.Link>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
