@@ -10,6 +10,8 @@ import BlogDetails from './Pages/Home/BlogDetails/BlogDetails';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import UserProfile from './Pages/Dashboard/UserProfile/UserProfile';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin/MakiAdmin';
+import AddBlog from './Pages/Dashboard/AddBlog/AddBlog';
+import ManageBlogs from './Pages/Dashboard/ManageBlogs/ManageBlogs';
 
 function App() {
   return (
@@ -25,9 +27,9 @@ function App() {
 
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
               <Route path="/dashboard/userProfile" element={<UserProfile />} />
-              {/* <Route path={`/dashboard/addBlog`} element={<AddBlog/>} /> */}
+              <Route path={`/dashboard/addBlog`} element={<AddBlog />} />
 
-              {/* <Route path={`/dashboard/manageBlogs`} element={<ManageBlogs />} /> */}
+              <Route path={`/dashboard/manageBlogs`} element={<ManageBlogs />} />
 
               <Route path={`/dashboard/makeAdmin`} element={<MakeAdmin />} />
 

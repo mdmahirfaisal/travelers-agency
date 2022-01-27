@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './UserProfile.css';
 import profileImg from './image/profile.jpg';
+import { Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 
 
 
 const UserProfile = () => {
-    const { user, logOut } = useAuth;
-
+    const { user, logOut } = useAuth();
     const navigate = useNavigate();
     const handleLogout = () => {
         Swal.fire({
@@ -42,9 +42,11 @@ const UserProfile = () => {
                             <img src={profileImg} className='img-fluid' style={{ height: '250px' }} alt='User' />
                         </div>
                         <div className="content">
-                            <h3 className='m-0 p-0 text-secondary fw-bold'>{user?.displayName || "User name"}</h3>
-                            <h6 className='text-secondary mb-5 fw-light'>{user?.email || "User email"}</h6>
-                            <button onClick={handleLogout} className='login-button text-center mx-auto mb-3'>Logout</button>
+                            <h3 className='m-0 p-0 text-secondary fw-bold'>{user.displayName}</h3>
+                            <h6 className='text-secondary mb-5 fw-light'>{user.email}</h6>
+                            <Button onClick={handleLogout} variant="contained" className=" w-100  rounded-pill mt-4 ">
+                                LOGOUT
+                            </Button>
                         </div>
                     </div>
                 </div>

@@ -27,7 +27,6 @@ const Blogs = () => {
     const size = 10;
 
     React.useEffect(() => {
-        // fetch(`https://radiant-chamber-46753.herokuapp.com/blogs?page=5&&size=10`)
         fetch(`https://radiant-chamber-46753.herokuapp.com/blogs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
@@ -35,7 +34,6 @@ const Blogs = () => {
                 const count = data.count;
                 const pageNumber = Math.ceil(parseInt(count / size));
                 setPageCount(pageNumber)
-                // console.log(data);
             })
             .catch(error => {
                 Swal.fire({

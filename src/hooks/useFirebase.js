@@ -177,7 +177,6 @@ const useFirebase = () => {
             .then(res => res.json())
             .then(data => {
                 setAdmin(data.admin)
-                console.log(data.admin)
             })
             .catch(error => {
                 Swal.fire({

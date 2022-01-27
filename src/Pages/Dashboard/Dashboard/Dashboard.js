@@ -146,8 +146,8 @@ const Dashboard = () => {
                                 <Popover.Header className='border-0' > <h5 className='text-center text-primary'>{user.displayName}</h5></Popover.Header>
                                 <Popover.Body>
                                     <p>{user.email}</p>
-                                    <button onClick={handleLogout} className='btn btn-outline-danger w-100 py-0 rounded-pill text-center mx-auto mb-3'>Logout</button>
-                                    <HashLink to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-3 w-100 py-0 rounded-pill ms-auto me-md-5">Home</Button></HashLink>
+                                    <HashLink to="/home#home" className="text-decoration-none"><Button variant='contained' className=" px-3 w-100 py-0 rounded-pill ">HOME</Button></HashLink>
+                                    <Button onClick={handleLogout} variant='contained' className=" px-3 w-100 py-0 rounded-pill  mt-2">LOGOUT</Button>
                                 </Popover.Body>
                             </Popover>
                         </Overlay>
@@ -182,11 +182,11 @@ const Dashboard = () => {
                         </ListItem>
 
                         <ListItem button>
-                            <HashLink to="/dashboard/addProduct" className='text-decoration-none w-100 text-dark fw-bold'>ADD PRODUCT</HashLink>
+                            <HashLink to="/dashboard/addBlog" className='text-decoration-none w-100 text-dark fw-bold'>ADD A BLOG</HashLink>
                         </ListItem>
 
                         <ListItem button>
-                            <HashLink to="/dashboard/manageProduct" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE PRODUCT</HashLink>
+                            <HashLink to="/dashboard/manageBlogs" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE BLOGS</HashLink>
                         </ListItem>
 
                         <ListItem button>
@@ -199,19 +199,15 @@ const Dashboard = () => {
                     {
                         !admin && <>
                             <ListItem button>
-                                <HashLink to="/products" className='text-decoration-none w-100 text-dark fw-bold'>PRODUCTS</HashLink>
+                                <HashLink to="/home#blogs" className='text-decoration-none w-100 text-dark fw-bold'>ALL BLOGS</HashLink>
                             </ListItem>
 
                             <ListItem button>
-                                <HashLink to="/dashboard/myOrders" className='text-decoration-none w-100 text-dark fw-bold'>MY ORDERS</HashLink>
+                                <HashLink to="/dashboard/myOrders" className='text-decoration-none w-100 text-dark fw-bold'>MY EXPERIENCE</HashLink>
                             </ListItem>
 
                             <ListItem button>
-                                <HashLink to="/dashboard/userProfile" className='text-decoration-none w-100 text-dark fw-bold'>PAY NOW</HashLink>
-                            </ListItem>
-
-                            <ListItem button>
-                                <HashLink to="/dashboard/addReview" className='text-decoration-none w-100 text-dark fw-bold'>RATE US</HashLink>
+                                <HashLink to="/dashboard/addReview" className='text-decoration-none w-100 text-dark fw-bold'>ADD REVIEW</HashLink>
                             </ListItem>
                         </>
                     }
@@ -222,7 +218,9 @@ const Dashboard = () => {
                         variant="light"
                         fixed="bottom"
                     >
-                        <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-3 mb-4' as={HashLink} to="/home">BACK TO HOME</Nav.Link>
+                        <Nav.Link className=' text-decoration-none ms-3 mb-4' as={HashLink} to="/home"><Button variant="contained" className=" w-100  rounded-pill mt-4 ">
+                            BACK TO HOME
+                        </Button></Nav.Link>
                     </Navbar>
                 </List>
 

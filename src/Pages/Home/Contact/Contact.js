@@ -33,7 +33,7 @@ const Contact = () => {
                         </div>
                         <div className="col-xs-12">
                             <div className="styled-input wide">
-                                <textarea required></textarea>
+                                <textarea className='contact-text' required></textarea>
                                 <label>Message</label>
                             </div>
                         </div>
