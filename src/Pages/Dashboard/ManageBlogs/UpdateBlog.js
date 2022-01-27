@@ -36,6 +36,7 @@ const UpdateBlog = ({ blog, open, handleClose }) => {
             expense: data.expense,
             experience: data.experience
         };
+
         setUpLoading(true)
         axios.put('http://localhost:5000/updateBlogs', BlogData)
             .then(res => {
