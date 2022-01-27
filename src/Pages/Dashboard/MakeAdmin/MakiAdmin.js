@@ -91,7 +91,7 @@ const MakeAdmin = () => {
                             component="img"
                             image={"https://i.ibb.co/KKfz3rj/admin.png"}
                             alt="Blog img"
-                            sx={{ borderRadius: '20px', maxHeight: '500px' }}
+                            sx={{ borderRadius: '20px', maxHeight: '400px' }}
                         />
                         <CardContent>
                             <form onSubmit={handleMakeAdmin} className="mt-2">
