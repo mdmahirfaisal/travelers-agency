@@ -38,7 +38,7 @@ const UpdateBlog = ({ blog, open, handleClose }) => {
         };
 
         setUpLoading(true)
-        axios.put('http://localhost:5000/updateBlogs', BlogData)
+        axios.put('https://radiant-chamber-46753.herokuapp.com/updateBlogs', BlogData)
             .then(res => {
                 console.log(res);
                 if (res.data.insertedId) {
