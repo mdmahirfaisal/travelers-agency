@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
-import Swal from 'sweetalert2';
 import Navigation from '../../Shared/Navigation/Navigation';
 
 import useAuth from '../../../hooks/useAuth';

@@ -5,6 +5,8 @@ import NotFound from './Pages/NotFound/NotFound';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
+import BlogDetails from './Pages/Home/BlogDetails/BlogDetails';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/home" element={<Home />} />
+            <Route path="/blogDetails/:id" element={<PrivateRoute><BlogDetails /></PrivateRoute>} />
+
 
             {/* Dashboard route  */}
 

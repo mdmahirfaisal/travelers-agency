@@ -83,13 +83,13 @@ const Navigation = () => {
 
                     <Navbar.Collapse id="responsive-navbar-nav" className={isCollapsed}>
                         <Nav className="me-auto">
-                            <Nav.Link as={HashLink} to="/home" className="mr-md-5" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
+                            <Nav.Link as={HashLink} to="/home#home" className="mr-md-5" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
 
-                            <Nav.Link as={HashLink} to="/" className="mr-md-5" active> About </Nav.Link>
+                            <Nav.Link as={HashLink} to="/home#about" className="mr-md-5" active> About </Nav.Link>
 
-                            <Nav.Link as={HashLink} to="/" className="mr-md-5" active> Blogs</Nav.Link>
+                            <Nav.Link as={HashLink} to="/home#blogs" className="mr-md-5" active> Blogs</Nav.Link>
 
-                            <Nav.Link as={HashLink} to="/home" className="mr-md-5" active>Contact Us</Nav.Link>
+                            <Nav.Link as={HashLink} to="/home#contact" className="mr-md-5" active>Contact Us</Nav.Link>
 
                             <Nav.Link as={HashLink} to="/" className="mr-md-5" active> Dashboard </Nav.Link>
 
@@ -98,7 +98,7 @@ const Navigation = () => {
                             {
                                 user.email ?
                                     <div ref={ref}>
-                                        <h3 onClick={handleClick} style={{ cursor: 'pointer' }}><i className="text-danger fas fa-user-circle"></i></h3>
+                                        <h2 onClick={handleClick} style={{ cursor: 'pointer' }}><i className=" fas fa-user-circle"></i></h2>
 
                                         <Overlay
                                             show={show}

@@ -34,11 +34,11 @@
   }
   ::-webkit-scrollbar {
   height: 12px;
-  width: 8px;
+  width: 10px;
   background: var(--dark);
   }
   ::-webkit-scrollbar-thumb {
-  background: rgb(184, 8, 8);
+  background: rgb(2, 255, 44);
   }
   ::-webkit-scrollbar-corner {
   background: var(--dark);
