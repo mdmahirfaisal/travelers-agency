@@ -67,7 +67,7 @@ const BlogInfo = ({ blog }) => {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <Button onClick={() => handleDetails(blog._id)} variant="contained" className=" w-100 py-1 rounded-pill"> ADD OPINION</Button>
+                <Button onClick={() => handleDetails(blog._id)} variant="contained" className=" w-100 py-1 rounded-pill"> DETAILS</Button>
             </Card>
         </div>
     );

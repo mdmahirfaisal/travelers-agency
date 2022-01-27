@@ -3,16 +3,40 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, TextField } from '@mui/material';
+import { Box, Button, CardActionArea, CardActions, Collapse, Rating, TextField } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Navigation from '../../Shared/Navigation/Navigation';
 // import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import Footer from '../../Shared/Footer/Footer';
+import StarIcon from '@mui/icons-material/Star';
+
+
+
+
+const labels = {
+    0.5: 'Useless',
+    1: 'Useless+',
+    1.5: 'Poor',
+    2: 'Poor+',
+    2.5: 'Ok',
+    3: 'Ok+',
+    3.5: 'Good',
+    4: 'Good+',
+    4.5: 'Excellent',
+    5: 'Excellent+',
+};
+
+
+
 
 const BlogDetails = () => {
     const { id } = useParams();
     const [blog, setBlog] = React.useState({});
+    const [expanded, setExpanded] = React.useState(false);
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
     const { register, handleSubmit } = useForm();
     // const [productUpload, setProductUpload] = React.useState(false);
@@ -70,22 +94,48 @@ const BlogDetails = () => {
                 <div className='row'>
 
                     <div className="col-md-7">
-                        <Card className='shadow mb-3' style={{ borderRadius: '20px' }}>
-                            <CardActionArea>
-                                <CardMedia className='img-fluid'
+                        <Card className="shadow mb-4" sx={{ borderRadius: '20px' }}>
+                            <CardActionArea expand={expanded}
+                                onClick={handleExpandClick}
+                                aria-expanded={expanded}
+                                aria-label="show more">
+                                <CardMedia
                                     component="img"
-                                    image={blog.img || "https://i.ibb.co/cNyd8LW/banner-3.png"}
-                                    alt="Blog img"
-                                    sx={{ borderRadius: '20px' }}
+                                    height="194"
+                                    image={blog?.img || "https://i.ibb.co/cNyd8LW/banner-3.png"}
+                                    alt="Portfolio"
+                                    style={{ borderRadius: '25px' }}
                                 />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {blog.name}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {blog.body}
-                                    </Typography>
+                                <CardContent className='p-2 pb-0 text-start'>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <h5>{blog.location}.</h5>
+                                            <p>{blog.time}.</p>
+                                        </div>
+                                        <div className="col-6">
+                                            <h5>$ {blog.expense}</h5>
+                                            <p> {blog.date}</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Ratings  */}
+                                    <Box sx={{ width: 200, display: 'flex', alignItems: 'center', }}>
+                                        <Rating name="text-feedback" value={parseInt(blog.ratings)} readOnly precision={0.5} emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />} /><Box sx={{ ml: 2 }}>{labels[parseInt(blog.ratings)]}</Box>
+                                    </Box>
+                                    <p className='ms-auto my-1 text-center'>{blog._id}</p>
                                 </CardContent>
+                                <CardActions disableSpacing>
+                                    <Typography paragraph
+                                        style={{ fontSize: '13px', cursor: 'pointer' }} className='text-dark text-start fs-6'> See... <span className=''>{expanded ? "less" : "more"}</span>
+
+                                    </Typography>
+                                </CardActions>
+                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                    <CardContent>
+                                        <p>{blog.experience}</p>
+
+                                    </CardContent>
+                                </Collapse>
                             </CardActionArea>
                         </Card>
                     </div>
