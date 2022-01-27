@@ -91,7 +91,7 @@ const Navigation = () => {
 
                             <Nav.Link as={HashLink} to="/home#contact" className="mr-md-5" active>Contact Us</Nav.Link>
 
-                            <Nav.Link as={HashLink} to="/" className="mr-md-5" active> Dashboard </Nav.Link>
+                            <Nav.Link as={HashLink} to="/dashboard" className="mr-md-5" active> Dashboard </Nav.Link>
 
                         </Nav>
                         <Nav className='ms-auto d-flex align-items-center'>

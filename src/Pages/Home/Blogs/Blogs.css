@@ -45,7 +45,7 @@
     color: var(--clr-font-dark-100);
   }
   
-  .blog-card {
+  /* .blog-card {
     background: var(--clr-card);
     color: var(--clr-font-dark-200);
     box-shadow: 0 0 10px gray;
@@ -92,10 +92,10 @@
     margin: 0;
     padding: 1rem;
     position: relative;
-  }
+  } */
   
   @media only screen and (min-width: 650px) {
-    .sidebar-content:after {
+    /* .sidebar-content:after {
       position: absolute;
       top: 100%;
       left: 0;
@@ -144,7 +144,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
+    } */
   
     .blog-hero {
       padding: 2rem;
