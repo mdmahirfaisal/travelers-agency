@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, } from '@mui/material';
+import { Button, CardActionArea, Collapse, } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
@@ -29,6 +29,12 @@ const labels = {
 
 const BlogInfo = ({ blog }) => {
 
+    const [expanded, setExpanded] = React.useState(false);
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
+
     const navigate = useNavigate();
     const handleDetails = (id) => {
         const url = `/blogDetails/${id}`
@@ -36,14 +42,17 @@ const BlogInfo = ({ blog }) => {
     }
 
     return (
-        <div className="col-md-6">
+        <div className="col-md-6 col-lg-4">
             <Card className='shadow mb-3' style={{ borderRadius: '20px' }}>
-                <CardActionArea>
+                <CardActionArea expand={expanded}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more">
                     <CardMedia className='img-fluid'
                         component="img"
                         image={blog.img || "https://i.ibb.co/cNyd8LW/banner-3.png"}
                         alt="Blog img"
-                        sx={{ borderRadius: '20px', minHeight: '150px' }}
+                        sx={{ borderRadius: '20px', height: '200px', }}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
@@ -62,12 +71,18 @@ const BlogInfo = ({ blog }) => {
                         <Typography variant="body2" color="text.primary">
                             {blog._id}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {blog.experience}
-                        </Typography>
+
+                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                            <Typography variant="body2" color="text.secondary">
+                                {blog.experience}
+                            </Typography>
+                        </Collapse>
+
                     </CardContent>
                 </CardActionArea>
-                <Button onClick={() => handleDetails(blog._id)} variant="contained" className=" w-100 py-1 rounded-pill"> DETAILS</Button>
+                <CardContent className=''>
+                    <Button onClick={() => handleDetails(blog._id)} variant="contained" className=" w-100 py-1 rounded-pill"> DETAILS</Button>
+                </CardContent>
             </Card>
         </div>
     );

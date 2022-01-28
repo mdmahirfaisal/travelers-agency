@@ -7,7 +7,7 @@ import { Carousel } from 'react-bootstrap';
 const Banner = () => {
     return (
         <>
-            <Carousel fade>
+            <Carousel fade id='home'>
                 <Carousel.Item>
                     <div className="slide1">
                         <div className="container d-flex align-item-center justify-content-center">

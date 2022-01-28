@@ -12,6 +12,9 @@ import UserProfile from './Pages/Dashboard/UserProfile/UserProfile';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin/MakiAdmin';
 import AddBlog from './Pages/Dashboard/AddBlog/AddBlog';
 import ManageBlogs from './Pages/Dashboard/ManageBlogs/ManageBlogs';
+import AddUserBlog from './Pages/Dashboard/AddUserBlog/AddUserBlog';
+import MyBlogs from './Pages/Dashboard/MyBlogs/MyBlogs';
+import ManageUsersBlog from './Pages/Dashboard/ManageUsersBlog/ManageUsersBlog';
 
 function App() {
   return (
@@ -26,22 +29,20 @@ function App() {
             {/* Dashboard route  */}
 
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
-              <Route path="/dashboard/userProfile" element={<UserProfile />} />
-              <Route path={`/dashboard/addBlog`} element={<AddBlog />} />
+              <Route path="/dashboard/userProfile" element={<PrivateRoute> <UserProfile /></PrivateRoute>} />
+              <Route path={`/dashboard/addAdminBlog`} element={<AddBlog />} />
 
-              <Route path={`/dashboard/manageBlogs`} element={<ManageBlogs />} />
+              <Route path={`/dashboard/manageBlogs`} element={<PrivateRoute><ManageBlogs /> </PrivateRoute>} />
 
-              <Route path={`/dashboard/makeAdmin`} element={<MakeAdmin />} />
+              <Route path={`/dashboard/makeAdmin`} element={<PrivateRoute><MakeAdmin /></PrivateRoute>} />
 
-              {/* <Route path={`/dashboard/editBlog/:id`} element={<EditBlog/>} /> */}
+              <Route path={`/dashboard/manageUserBlogs`} element={<PrivateRoute><ManageUsersBlog /></PrivateRoute>} />
 
-              {/* <Route path={`/dashboard/manageOrders`} element={<ManageOrders />} /> */}
+              <Route path={`/dashboard/myBlogs`} element={<PrivateRoute><MyBlogs /></PrivateRoute>} />
 
-              {/* <Route path={`/dashboard/myOrders`} element={<MyOrders></MyOrders>} /> */}
+              <Route path={`/dashboard/addUserBlog`} element={<PrivateRoute><AddUserBlog /></PrivateRoute>} />
 
-              {/* <Route path={`/dashboard/addReview`} element={<AddReview></AddReview>} /> */}
-
-              <Route exact path="/dashboard" element={<UserProfile />} />
+              <Route exact path="/dashboard" element={<PrivateRoute><UserProfile /></PrivateRoute>} />
 
             </Route>
 

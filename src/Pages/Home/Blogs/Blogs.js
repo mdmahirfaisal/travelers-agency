@@ -54,7 +54,7 @@ const Blogs = () => {
                 </div>
 
                 <div className='blog-main'>
-                    <h3 className='mt-3 fw-bold text-secondary'> Recent Posts </h3>
+                    <h3 className='my-5 fw-bold text-secondary'> EVERY PAGE BLOGS: ({allBlogs.length}) </h3>
 
                     <div className="container">
                         <div className="row g-4">
@@ -70,12 +70,16 @@ const Blogs = () => {
 
                 </div>
             </div>
-            <div className='bg-light py-3'>
-                <h5 className=' fw-bold ms-5'>Page Number: {page}</h5>
-                <Stack className='fs-1' spacing={4} style={{ marginLeft: '10%' }}>
-                    <Pagination className="fs-1" count={pageCount} page={page} color='secondary' onChange={handleChange} />
-                </Stack>
+
+            <div style={{ backgroundColor: '#dcdde1' }}>
+                <div className=' py-3 container'>
+                    <h5 className=' fw-bold ms-5 text-start'>Page Number: {page}</h5>
+                    <Stack className='fs-1 text-center' spacing={4} >
+                        <Pagination className="fs-1" count={pageCount} page={page} color='secondary' onChange={handleChange} />
+                    </Stack>
+                </div>
             </div>
+
         </div>
     );
 };

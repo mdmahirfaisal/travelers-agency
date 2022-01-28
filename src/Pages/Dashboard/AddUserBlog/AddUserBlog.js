@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 
 import StarIcon from '@mui/icons-material/Star';
 import Rating from '@mui/material/Rating';
+import useAuth from '../../../hooks/useAuth';
 
 
 
@@ -27,10 +28,11 @@ const labels = {
 };
 
 
-const AddBlog = () => {
+const AddUserBlog = () => {
+    const { user } = useAuth();
     const [uploading, setUploading] = useState(false);
     const { register, handleSubmit, reset } = useForm();
-    const [blogImg, setBlogImg] = useState(null)
+    const [productImg, setProductImg] = useState(null)
 
     const [rateValue, setRateValue] = React.useState(0);
     const [hover, setHover] = React.useState(-1);
@@ -47,55 +49,61 @@ const AddBlog = () => {
             .then(response => {
                 console.log(response.data.data.display_url);
 
-                setBlogImg(response.data.data.display_url);
+                setProductImg(response.data.data.display_url);
             })
             .catch(error => {
                 console.log(error);
             });
     };
-    const onSubmit = blogData => {
+    // const onSubmit = productData => {
+    //     const data = {
+    //         date: productData.date,
+    //         expense: productData.expense,
+    //         location: productData.location,
+    //         time: productData.time,
+    //         ratings: rateValue,
+    //         img: productImg,
+    //         experience: productData.experience,
+
+    //     };
+
+    const onSubmit = (productData) => {
         const data = {
-            date: blogData.date,
-            expense: blogData.expense,
-            location: blogData.location,
-            time: blogData.time,
+            date: productData.date,
+            expense: productData.expense,
+            location: productData.location,
+            time: productData.time,
             ratings: rateValue,
-            img: blogImg,
-            experience: blogData.experience,
+            img: productImg,
+            experience: productData.experience,
 
         };
 
-        reset()
+        const userData = { status: 'pending', name: user.displayName, email: user.email };
+        const newBlog = { ...userData, ...data, orderTime: new Date() };
         setUploading(true)
-        axios.post('https://radiant-chamber-46753.herokuapp.com/blogs', data)
-            .then(res => {
-                console.log(res);
-                setUploading(false)
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'New Blog added Successfully',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                }
-                else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Order placed Canceled!',
-                    })
-                }
+        fetch('https://radiant-chamber-46753.herokuapp.com/userBlogs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newBlog)
+        })
+            .then(res => res.json())
+            .then(data => {
+                reset();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Yes...',
+                    text: 'Your Blog added successfully',
+                })
+
             })
             .catch(error => {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: `${error}`,
+                    title: 'Error',
+                    text: `${error.message}`,
                 })
-            })
-
+            }).finally(() => setUploading(false))
     };
 
     const uploadFile = () => {
@@ -134,7 +142,7 @@ const AddBlog = () => {
                     <TextField className="col-12 col-md-5 ms-md-2"
                         label="Time"
                         required
-                        type="number" {...register("time")}
+                        type="text" {...register("time")}
                         variant="standard" />
 
                     <div className="row">
@@ -189,4 +197,4 @@ const AddBlog = () => {
     );
 };
 
-export default AddBlog;
+export default AddUserBlog;

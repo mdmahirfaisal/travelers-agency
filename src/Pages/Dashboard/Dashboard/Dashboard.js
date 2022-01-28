@@ -176,13 +176,13 @@ const Dashboard = () => {
                         <HashLink to="/dashboard/userProfile" className='text-decoration-none w-100 text-dark fw-bold'>PROFILE</HashLink>
                     </ListItem>
 
-                    {user.email && admin && <>
+                    {user.email && admin ? <>
                         <ListItem button>
-                            <HashLink to="/dashboard/manageOrders" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE ORDERS</HashLink>
+                            <HashLink to="/dashboard/manageUserBlogs" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE USER BLOGS</HashLink>
                         </ListItem>
 
                         <ListItem button>
-                            <HashLink to="/dashboard/addBlog" className='text-decoration-none w-100 text-dark fw-bold'>ADD A BLOG</HashLink>
+                            <HashLink to="/dashboard/addAdminBlog" className='text-decoration-none w-100 text-dark fw-bold'>ADD A BLOG</HashLink>
                         </ListItem>
 
                         <ListItem button>
@@ -193,21 +193,23 @@ const Dashboard = () => {
                             <HashLink to="/dashboard/makeAdmin" className='text-decoration-none w-100 text-dark fw-bold'>CREATE ADMIN</HashLink>
                         </ListItem>
 
-                    </>}
+                    </> :
+                        <circularProgressClasses sx={{ mt: 20 }} />
+                    }
 
 
                     {
-                        !admin && <>
+                        user.email && !admin && <>
                             <ListItem button>
                                 <HashLink to="/home#blogs" className='text-decoration-none w-100 text-dark fw-bold'>ALL BLOGS</HashLink>
                             </ListItem>
 
                             <ListItem button>
-                                <HashLink to="/dashboard/myOrders" className='text-decoration-none w-100 text-dark fw-bold'>MY EXPERIENCE</HashLink>
+                                <HashLink to="/dashboard/myBlogs" className='text-decoration-none w-100 text-dark fw-bold'>MY BLOGS</HashLink>
                             </ListItem>
 
                             <ListItem button>
-                                <HashLink to="/dashboard/addReview" className='text-decoration-none w-100 text-dark fw-bold'>ADD REVIEW</HashLink>
+                                <HashLink to="/dashboard/addUserBlog" className='text-decoration-none w-100 text-dark fw-bold'>ADD A BLOG</HashLink>
                             </ListItem>
                         </>
                     }
