@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, sendEmailVerification, } from "firebase/auth";
 import Swal from 'sweetalert2'
 
 import initializeFirebase from '../Pages/Login/Firebase/Firebase.init';
@@ -46,7 +46,7 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, Password)
             .then(() => {
                 setAuthError('');
-
+                verifyEmail();
                 const newUser = { email, displayName: name };
                 setUser(newUser);
 
@@ -158,6 +158,25 @@ const useFirebase = () => {
         })
             .finally(() => setLoading(false));
     };
+
+
+    // verify email 
+    /////////
+    const verifyEmail = () => {
+        sendEmailVerification(auth.currentUser)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error} `,
+
+                })
+            })
+    };
+
 
     // firebase observer user state
     useEffect(() => {
